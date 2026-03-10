@@ -1,0 +1,397 @@
+╔════════════════════════════════════════════════════════════════════════════╗
+║           GUÍA DE ESTUDIO - EXAMEN DEL VIERNES                              ║
+║       Punteros, Estructuras, Pilas y Colas Estáticas                       ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+═══════════════════════════════════════════════════════════════════════════════
+TEMA 1: PUNTEROS
+═══════════════════════════════════════════════════════════════════════════════
+
+📌 CONCEPTOS BÁSICOS:
+   • Puntero = variable que almacena una dirección de memoria
+   • Declaración: int *ptr;
+   • Operador &: obtiene dirección de una variable
+   • Operador *: accede al valor en la dirección (desreferenciación)
+
+📚 ARCHIVOS PARA ESTUDIAR:
+   ✓ ejemploPuntero01.c      → Punteros con arreglos, recorrido
+   ✓ ejemploPuntero02.c      → Función palíndromo con punteros
+   ✓ ejemploPunteroDoble01.c → Punteros dobles básicos
+   ✓ ejemploPunteroDoble02.c → Punteros dobles avanzados
+
+🔑 PUNTOS CLAVE:
+   1. Aritmética de punteros:
+      ptr + 1  → siguiente elemento
+      ptr - 1  → elemento anterior
+      ptr < &arr[n] → condición de límite
+   
+   2. Punteros y arreglos:
+      int arr[5];
+      int *ptr = arr;  // ptr apunta al primer elemento
+      *(ptr + i) == arr[i]  // acceso equivalente
+   
+   3. Punteros dobles:
+      int **pptr;  // puntero a puntero
+      **pptr       // doble desreferenciación
+
+💡 EJEMPLO RÁPIDO:
+   int x = 10;
+   int *ptr = &x;    // ptr guarda la dirección de x
+   printf("%d", *ptr); // imprime 10
+   *ptr = 20;        // modifica x a 20
+
+
+═══════════════════════════════════════════════════════════════════════════════
+TEMA 2: ESTRUCTURAS (STRUCT)
+═══════════════════════════════════════════════════════════════════════════════
+
+📌 CONCEPTOS BÁSICOS:
+   • Estructura = tipo de dato compuesto
+   • Agrupa variables relacionadas bajo un mismo nombre
+   • Se accede con el operador punto (.) o flecha (->)
+
+📚 ARCHIVOS PARA ESTUDIAR:
+   ✓ ejemploStruct01.c       → Estructuras básicas con arreglos
+   ✓ ejemploStruct02.c       → Estructuras con entrada/salida
+   ✓ ptr_struct.c            → Punteros a estructuras (->)
+   ✓ struct_datsEst.c        → Estructura completa con funciones
+
+🔑 PUNTOS CLAVE:
+   1. Definición de estructura:
+      struct Persona {
+          char nombre[30];
+          int edad;
+          float altura;
+      };
+   
+   2. Declaración y acceso:
+      struct Persona p1;
+      p1.edad = 20;           // acceso con punto
+      
+      struct Persona *ptr = &p1;
+      ptr->edad = 20;         // acceso con flecha (puntero)
+   
+   3. Estructura con punteros internos:
+      struct Dato {
+          int arreglo[10];
+          int *ptr;          // puntero dentro de la estructura
+          int contador;
+      };
+
+💡 EJEMPLO RÁPIDO:
+   struct Estudiante {
+       char nombre[30];
+       float promedio;
+   };
+   
+   struct Estudiante est;
+   struct Estudiante *ptrEst = &est;
+   
+   // Dos formas de acceder:
+   est.promedio = 9.5;          // con punto
+   ptrEst->promedio = 9.5;      // con flecha
+
+
+═══════════════════════════════════════════════════════════════════════════════
+TEMA 3: ENCAPSULACIÓN (Estructura + Arreglo + Punteros)
+═══════════════════════════════════════════════════════════════════════════════
+
+📌 CONCEPTOS BÁSICOS:
+   • Encapsular datos y operaciones en una estructura
+   • Combina arreglo + índice/puntero + lógica
+
+📚 ARCHIVOS PARA ESTUDIAR:
+   ✓ ejemploEncapsulacion01.c → struct con arreglo e índice
+   ✓ ejemploEncapsulacion03.c → struct con puntero a estructura
+   ✓ ejemploEncapsulacion05.c → struct con puntero doble
+   ✓ ejemploEncapsulacion06.c → struct con doble puntero a estructura
+
+🔑 PUNTOS CLAVE:
+   1. Patrón básico:
+      struct Dato {
+          int arreglo[TAM];
+          int indice;
+      };
+   
+   2. Con puntero:
+      struct Dato {
+          int arreglo[TAM];
+          int *ptr;
+      };
+      
+      dato.ptr = dato.arreglo;  // ptr apunta al inicio
+      dato.ptr++;               // avanza al siguiente
+   
+   3. Con puntero a estructura:
+      struct Dato dato, *ptrS;
+      ptrS = &dato;
+      ptrS->arreglo[i] = valor;  // acceso con flecha
+
+💡 VENTAJAS:
+   - Organización del código
+   - Reutilización de datos
+   - Mantenimiento más fácil
+
+
+═══════════════════════════════════════════════════════════════════════════════
+TEMA 4: PILAS ESTÁTICAS (STACK)
+═══════════════════════════════════════════════════════════════════════════════
+
+📌 CONCEPTOS BÁSICOS:
+   • LIFO: Last In, First Out (último en entrar, primero en salir)
+   • Se inserta y elimina por un solo extremo (tope)
+
+📚 ARCHIVOS PARA ESTUDIAR:
+   ✓ ejemplo_pila_estatica.c → Implementación completa con menú
+
+🔑 ESTRUCTURA:
+   struct Pila {
+       int datos[MAX];   // arreglo estático
+       int tope;         // índice del elemento superior (-1 si vacía)
+   };
+
+🔑 OPERACIONES PRINCIPALES:
+   1. Inicializar:    tope = -1
+   2. Push (insertar):
+      - Verificar que no esté llena (tope < MAX-1)
+      - tope++
+      - datos[tope] = valor
+   
+   3. Pop (eliminar):
+      - Verificar que no esté vacía (tope != -1)
+      - valor = datos[tope]
+      - tope--
+   
+   4. Peek (consultar):
+      - Retornar datos[tope] sin modificar
+   
+   5. Está vacía:  tope == -1
+   6. Está llena:  tope == MAX - 1
+
+💡 DIAGRAMA:
+   Push 10, Push 20, Push 30:
+   
+   [30] ← tope (índice 2)
+   [20]
+   [10]
+   ----
+   
+   Pop → retorna 30, tope = 1
+   [20] ← tope (índice 1)
+   [10]
+   ----
+
+🎯 APLICACIONES:
+   - Evaluación de expresiones matemáticas
+   - Función "deshacer" en programas
+   - Recursión (call stack)
+   - Navegación hacia atrás en navegadores
+
+
+═══════════════════════════════════════════════════════════════════════════════
+TEMA 5: COLAS ESTÁTICAS (QUEUE)
+═══════════════════════════════════════════════════════════════════════════════
+
+📌 CONCEPTOS BÁSICOS:
+   • FIFO: First In, First Out (primero en entrar, primero en salir)
+   • Se inserta por un extremo (final) y elimina por otro (frente)
+   • Cola CIRCULAR para aprovechar espacios
+
+📚 ARCHIVOS PARA ESTUDIAR:
+   ✓ ejemplo_cola_estatica.c → Implementación completa con menú
+
+🔑 ESTRUCTURA:
+   struct Cola {
+       int datos[MAX];   // arreglo estático
+       int frente;       // índice del primer elemento
+       int final;        // índice del último elemento
+       int contador;     // cantidad de elementos
+   };
+
+🔑 OPERACIONES PRINCIPALES:
+   1. Inicializar:
+      - frente = 0
+      - final = -1
+      - contador = 0
+   
+   2. Enqueue (insertar al final):
+      - Verificar que no esté llena (contador < MAX)
+      - final = (final + 1) % MAX    // CIRCULAR
+      - datos[final] = valor
+      - contador++
+   
+   3. Dequeue (eliminar del frente):
+      - Verificar que no esté vacía (contador > 0)
+      - valor = datos[frente]
+      - frente = (frente + 1) % MAX  // CIRCULAR
+      - contador--
+   
+   4. Peek (consultar):
+      - Retornar datos[frente] sin modificar
+   
+   5. Está vacía:  contador == 0
+   6. Está llena:  contador == MAX
+
+💡 COLA CIRCULAR (concepto clave):
+   Sin circular: [_][_][3][4][5] → llena (no se pueden usar espacios vacíos)
+                       ↑       ↑
+                    frente   final
+   
+   Con circular:  usa (indice + 1) % MAX para "dar la vuelta"
+   [1][2][3][4][5]  final=4
+    ↑
+   frente=0
+   
+   Después de enqueue(6):
+   [1][2][3][4][5][6][_][_]  → NO, el arreglo tiene tamaño fijo
+   
+   Correcto con circular:
+   [6][2][3][4][5]  final=0 (dio la vuelta)
+       ↑
+     frente=1
+
+🎯 APLICACIONES:
+   - Sistemas de impresión (print spooler)
+   - Procesamiento de tareas (scheduler)
+   - Buffers de datos (teclado, red)
+   - Algoritmos de búsqueda (BFS)
+
+
+═══════════════════════════════════════════════════════════════════════════════
+COMPARACIÓN: PILA vs COLA
+═══════════════════════════════════════════════════════════════════════════════
+
+┌─────────────┬──────────────────────┬──────────────────────┐
+│ Aspecto     │ PILA (Stack)         │ COLA (Queue)         │
+├─────────────┼──────────────────────┼──────────────────────┤
+│ Principio   │ LIFO                 │ FIFO                 │
+│ Insertar    │ Push (en el tope)    │ Enqueue (al final)   │
+│ Eliminar    │ Pop (del tope)       │ Dequeue (del frente) │
+│ Consultar   │ Peek (ver tope)      │ Peek (ver frente)    │
+│ Índices     │ tope (-1 si vacía)   │ frente, final        │
+│ Vacía       │ tope == -1           │ contador == 0        │
+│ Llena       │ tope == MAX-1        │ contador == MAX      │
+│ Analogía    │ Pila de platos       │ Fila de banco        │
+└─────────────┴──────────────────────┴──────────────────────┘
+
+
+═══════════════════════════════════════════════════════════════════════════════
+PLAN DE ESTUDIO SUGERIDO (3 DÍAS HASTA EL VIERNES)
+═══════════════════════════════════════════════════════════════════════════════
+
+📅 DÍA 1 (HOY - Domingo):
+   ⏰ 2 horas
+   ✓ Repasar punteros básicos (ejemploPuntero01.c, ejemploPuntero02.c)
+   ✓ Punteros dobles (ejemploPunteroDoble01.c)
+   ✓ Hacer ejercicios: crear funciones con punteros
+   
+   Ejercicio práctico:
+   → Escribir una función que invierta un arreglo usando punteros
+   → Escribir una función que encuentre el máximo con punteros
+
+📅 DÍA 2 (Lunes/Martes):
+   ⏰ 2-3 horas
+   ✓ Repasar estructuras (ejemploStruct01.c, ptr_struct.c, struct_datsEst.c)
+   ✓ Entender acceso con punto (.) vs flecha (->)
+   ✓ Practicar encapsulación (ejemploEncapsulacion01.c hasta 06.c)
+   
+   Ejercicio práctico:
+   → Crear una estructura "Producto" con nombre, precio, cantidad
+   → Hacer funciones para agregar productos usando punteros
+
+📅 DÍA 3 (Miércoles/Jueves):
+   ⏰ 3-4 horas
+   ✓ Estudiar PILAS a fondo (ejemplo_pila_estatica.c)
+   ✓ Estudiar COLAS a fondo (ejemplo_cola_estatica.c)
+   ✓ Compilar y ejecutar ambos programas
+   ✓ Modificar los programas: cambiar MAX, agregar funciones
+   
+   Ejercicios prácticos:
+   → Implementar una función que invierta una pila
+   → Implementar una función que mueva elementos de una cola a una pila
+   → Hacer ejercicios de lápiz y papel: trazar push/pop y enqueue/dequeue
+
+📅 VIERNES (Día del examen):
+   ⏰ 1 hora antes del examen
+   ✓ Repasar esta guía completa
+   ✓ Revisar las definiciones de estructuras de pila y cola
+   ✓ Practicar mentalmente: ¿cómo hago push? ¿cómo hago dequeue?
+
+
+═══════════════════════════════════════════════════════════════════════════════
+ERRORES COMUNES A EVITAR
+═══════════════════════════════════════════════════════════════════════════════
+
+❌ PUNTEROS:
+   • Olvidar inicializar: int *ptr; (sin asignar valor)
+   • Confundir & y *
+   • ptr++ cuando debería ser ptr + 1 en comparaciones
+
+❌ ESTRUCTURAS:
+   • Confundir punto (.) con flecha (->)
+     - Usar punto con punteros: ptr.campo ❌
+     - Usar flecha sin punteros: est->campo ❌
+   • Olvidar el operador & al pasar estructuras a funciones
+
+❌ PILAS:
+   • No verificar si está llena antes de push
+   • No verificar si está vacía antes de pop
+   • Olvidar incrementar/decrementar el tope
+
+❌ COLAS:
+   • No usar aritmética modular en cola circular
+   • Confundir frente con final
+   • No actualizar el contador
+
+
+═══════════════════════════════════════════════════════════════════════════════
+EJERCICIOS DE PRÁCTICA
+═══════════════════════════════════════════════════════════════════════════════
+
+🏋️ NIVEL BÁSICO:
+   1. Escribir una función que sume elementos de un arreglo usando punteros
+   2. Crear una estructura "Libro" con título, autor, año
+   3. Implementar push y pop para una pila de caracteres
+   4. Implementar enqueue y dequeue para una cola de enteros
+
+🏋️ NIVEL INTERMEDIO:
+   5. Función que copie una pila en otra (manteniendo el orden)
+   6. Función que invierta una cola usando una pila
+   7. Verificar si una expresión de paréntesis está balanceada (usar pila)
+   8. Simular una cola de impresión con prioridades
+
+🏋️ NIVEL AVANZADO:
+   9. Implementar una pila que guarde estructuras (no solo enteros)
+   10. Crear una cola circular que muestre visualmente su estado
+   11. Convertir expresión infija a postfija usando pila
+   12. Implementar una función que evalúe expresión postfija
+
+
+═══════════════════════════════════════════════════════════════════════════════
+RECURSOS ADICIONALES
+═══════════════════════════════════════════════════════════════════════════════
+
+📝 PARA COMPILAR Y EJECUTAR:
+   En terminal (PowerShell):
+   
+   gcc ejemplo_pila_estatica.c -o pila
+   .\pila
+   
+   gcc ejemplo_cola_estatica.c -o cola
+   .\cola
+
+🔍 SI TIENES DUDAS:
+   • Revisa los comentarios en los archivos .c
+   • Usa papel y lápiz para trazar el código línea por línea
+   • Modifica los valores de MAX y prueba casos extremos
+
+💪 CONSEJOS FINALES:
+   ✓ Practica ESCRIBIENDO código, no solo leyendo
+   ✓ Entiende el "por qué" de cada operación
+   ✓ Dibuja diagramas de memoria
+   ✓ Explica los conceptos en voz alta (método Feynman)
+
+
+═══════════════════════════════════════════════════════════════════════════════
+¡MUCHO ÉXITO EN TU EXAMEN DEL VIERNES! 🎓
+═══════════════════════════════════════════════════════════════════════════════
