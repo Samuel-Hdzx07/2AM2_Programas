@@ -1,0 +1,244 @@
+Teoría Completa para el Examen ✏️
+
+CONCEPTOS BÁSICOS
+¿Qué es una variable?
+Es un espacio reservado en memoria que tiene un nombre y almacena un valor que puede cambiar durante la ejecución del programa. Tiene tres características: nombre, tipo y valor.
+¿Qué es una constante?
+Es igual que una variable pero su valor no puede cambiar una vez asignado. Se usa para datos fijos que no deben modificarse en ningún momento.
+¿Qué es un tipo de dato?
+Define qué clase de información puede almacenar una variable y cuánto espacio ocupa en memoria.
+
+DATOS PRIMITIVOS EN C
+Son los tipos de dato básicos que el lenguaje trae por defecto, no necesitas crearlos ni definirlos:
+Tipo¿Qué almacena?EjemplointNúmeros enteros-5, 0, 42floatNúmeros decimales (precisión simple)3.14doubleNúmeros decimales (más precisión)3.141592653charUn solo carácter'a', 'Z', '3'voidAusencia de valor(no almacena nada)
+También existen modificadores que se combinan con los anteriores:
+
+short y long → modifican el tamaño (cuánto caben)
+signed y unsigned → con o sin negativos
+
+
+PALABRAS CLAVE (RESERVADAS) EN C
+Son palabras que el lenguaje ya tiene definidas para su propio uso. El programador no puede usarlas como nombres de variables, funciones ni estructuras:
+Control de flujo:
+if — else — switch — case — default — break — continue — return — goto
+Ciclos:
+for — while — do
+Tipos de dato:
+int — float — double — char — void — short — long — signed — unsigned
+Estructuras y tipos personalizados:
+struct — union — enum — typedef
+Memoria y otros:
+sizeof — static — extern — const — volatile — register — auto
+
+Hay 32 palabras reservadas en C estándar (C89/C90). Son parte del lenguaje y no pueden redefinirse.
+
+
+IDENTIFICADORES
+¿Qué es un identificador?
+Es el nombre que le das a una variable, función, estructura, etc. Reglas: no puede empezar con número, no puede contener espacios, no puede ser una palabra reservada y C distingue mayúsculas de minúsculas (edad y Edad son diferentes).
+¿Qué es un operador?
+Es un símbolo que indica una operación sobre uno o más valores. Aritméticos (+, -, *, /, %), relacionales (==, !=, >, <), lógicos (&&, ||, !) y de asignación (=).
+
+FUNCIONES
+¿Qué es una función?
+Es un bloque de código con nombre propio que realiza una tarea específica y puede llamarse desde otras partes del programa. Permite reutilizar código y organizar mejor el programa.
+Partes de una función:
+
+Tipo de retorno → qué tipo de dato devuelve, si no devuelve nada se pone void
+Nombre → cómo se identifica la función
+Parámetros → los datos que recibe para trabajar
+Cuerpo → las instrucciones que ejecuta
+return → el valor que devuelve al terminar
+
+¿Diferencia entre parámetro y argumento?
+El parámetro es la variable definida en la función, es el "hueco". El argumento es el valor concreto que le mandas cuando la llamas, es lo que metes en ese hueco.
+¿Qué es el return?
+Instrucción que termina la función y devuelve un valor al lugar donde fue llamada. Si la función es void no necesita return.
+
+ARREGLOS
+¿Qué es un arreglo?
+Es una colección de elementos del mismo tipo almacenados en posiciones de memoria contiguas bajo un mismo nombre. Se accede a cada elemento mediante un índice que empieza desde 0.
+¿Por qué el índice empieza en 0?
+Porque el índice representa el desplazamiento desde el inicio del arreglo. El primer elemento está a 0 posiciones del inicio, el segundo a 1, y así sucesivamente.
+Diferencia entre arreglo y variable:
+Una variable guarda un solo dato. Un arreglo guarda múltiples datos del mismo tipo y los diferencia por su posición.
+
+PUNTEROS
+¿Qué es un puntero?
+Es una variable especial que no almacena un dato común sino una dirección de memoria. Apunta al lugar donde está guardado otro dato.
+¿Para qué sirve?
+Para acceder y modificar variables indirectamente, pasar datos a funciones sin copiarlos y trabajar con estructuras de datos.
+Operadores:
+
+& → "dirección de", te da la dirección de memoria de una variable
+* → "desreferencia", te permite acceder al valor que hay en esa dirección
+
+¿Qué es la dirección de memoria?
+Es el número que identifica la ubicación exacta de un dato dentro de la memoria RAM. Cada variable que declaras queda guardada en una dirección específica.
+¿Qué es un puntero nulo?
+Es un puntero que no apunta a ninguna dirección válida. Se inicializa con NULL y es buena práctica hacerlo para evitar que apunte a basura en memoria.
+
+PASO POR VALOR vs PASO POR REFERENCIA
+Paso por valor:
+Se le envía a la función una copia del dato. Cualquier cambio que haga la función no afecta a la variable original. Es como darle a alguien una fotocopia, el original queda intacto.
+Paso por referencia:
+Se le envía a la función la dirección de memoria de la variable. La función trabaja directamente sobre el dato original y los cambios sí se ven reflejados afuera. Es como darle a alguien el documento original.
+
+En C esto se logra pasando punteros como parámetros.
+
+
+ESTRUCTURAS (struct)
+¿Qué es una estructura?
+Es un tipo de dato definido por el programador que agrupa variables de distintos tipos bajo un mismo nombre. Funciona como un molde o plantilla para crear datos más complejos.
+¿Qué es una instancia?
+Es una variable concreta creada a partir de ese molde. La estructura define cómo será, la instancia es la que realmente existe en memoria con sus propios valores.
+
+La estructura es el plano de una casa. La instancia es la casa ya construida.
+
+¿Cómo se accede a los campos?
+Con punto ( . ) → cuando tienes una variable normal de tipo struct. Ejemplo: persona.edad
+Con flecha ( -> ) → cuando tienes un puntero que apunta a un struct. Ejemplo: ptr->edad
+
+Regla para el examen: variable usa punto, puntero usa flecha.
+
+ptr->edad es exactamente lo mismo que (*ptr).edad, la flecha es solo un atajo más limpio.
+¿Qué es typedef?
+Permite darle un alias a un tipo de dato. Con typedef struct evitas escribir la palabra struct cada vez que declaras una variable de ese tipo, haciendo el código más limpio y legible.
+
+MEMORIA
+¿Qué es la memoria estática?
+El tamaño de la memoria se define desde que se escribe el programa y no cambia durante la ejecución. Los arreglos de tamaño fijo son un ejemplo.
+¿Qué es la memoria dinámica?
+Se solicita memoria durante la ejecución según se necesite. En C se usa malloc para pedirla y free para liberarla.
+
+PILA (Stack)
+¿Qué es una pila?
+Es una estructura de datos lineal que sigue el principio LIFO: Last In, First Out, el último en entrar es el primero en salir.
+Analogía: Una pila de platos. Solo puedes poner o quitar el plato de hasta arriba.
+Características:
+
+Opera por un solo extremo llamado tope o top
+En versión estática se implementa con un arreglo y una variable top que inicia en -1 cuando está vacía
+Overflow → intentar insertar en una pila llena
+Underflow → intentar eliminar de una pila vacía
+
+Operaciones:
+
+push → insertar en el tope
+pop → eliminar del tope
+peek → consultar el tope sin eliminarlo
+
+
+COLA (Queue)
+¿Qué es una cola?
+Es una estructura de datos lineal que sigue el principio FIFO: First In, First Out, el primero en entrar es el primero en salir.
+Analogía: Una fila en el banco. El que llega primero es el primero en salir.
+Características:
+
+Opera por dos extremos: frente donde se elimina y final donde se inserta
+También puede sufrir overflow y underflow
+
+Operaciones:
+
+enqueue → insertar al final
+dequeue → eliminar del frente
+
+
+COLA ESTÁTICA vs COLA CIRCULAR
+Cola estática:
+Usa un arreglo fijo. Cuando sacas elementos del frente ese espacio queda desperdiciado y no se reutiliza. El arreglo se consume hacia la derecha hasta agotarse aunque haya espacio libre al inicio.
+Cola circular:
+Resuelve ese problema haciendo que cuando el índice llega al final del arreglo vuelva automáticamente al inicio, como si fuera un círculo. Usa el operador módulo % para lograrlo y el espacio se reutiliza completamente.
+
+TABLA RESUMEN
+PilaCola EstáticaCola CircularPrincipioLIFOFIFOFIFOExtremos1 (tope)2 (frente y final)2 (frente y final)Reutiliza espacio—❌ No✅ SíVacía cuandotop == -1frente == -1frente == finalLlena cuandotop == MAX-1final == MAX-1(final+1)%MAX == frente
+
+POSIBLES PREGUNTAS EN EL EXAMEN
+Conceptos básicos:
+
+¿Cuál es la diferencia entre una variable y una constante?
+¿Qué diferencia hay entre un parámetro y un argumento?
+¿Por qué el índice de un arreglo empieza en 0?
+Menciona 5 palabras reservadas en C y para qué sirve cada una
+¿Cuáles son los tipos de dato primitivos en C?
+
+Punteros:
+
+¿Qué almacena un puntero?
+¿Qué diferencia hay entre & y *?
+¿Qué es un puntero nulo y para qué sirve?
+¿Cuál es la diferencia entre paso por valor y paso por referencia?
+
+Estructuras:
+
+¿Cuándo usas punto y cuándo usas flecha?
+¿Qué diferencia hay entre una estructura y una instancia?
+¿Para qué sirve typedef?
+
+Pilas:
+
+¿Qué significa LIFO?
+¿Qué es overflow y underflow?
+¿Con qué valor inicia el top en una pila vacía y por qué?
+
+Colas:
+
+¿Qué significa FIFO?
+¿Cuál es el problema de la cola estática?
+¿Cómo lo resuelve la cola circular?
+¿Qué operador usa la cola circular para dar la vuelta y cómo funciona?
+
+
+CONCEPTOS BÁSICOS
+¿Cuál es la diferencia entre una variable y una constante?
+Una variable puede cambiar su valor en cualquier momento durante la ejecución del programa. Una constante se le asigna un valor una sola vez y ya no puede modificarse. La variable es flexible, la constante es fija.
+¿Qué diferencia hay entre un parámetro y un argumento?
+El parámetro es la variable que se declara en la definición de la función, es el "hueco" que espera recibir un valor. El argumento es el valor concreto que le mandas a la función cuando la llamas. El parámetro es el recipiente, el argumento es lo que metes en él.
+¿Por qué el índice de un arreglo empieza en 0?
+Porque el índice representa el desplazamiento desde el inicio del arreglo en memoria. El primer elemento está a 0 posiciones del inicio, por eso es la posición 0. El segundo está a 1 posición del inicio, por eso es la posición 1, y así sucesivamente.
+Menciona 5 palabras reservadas en C y para qué sirve cada una:
+
+int → declara una variable de tipo entero
+if → ejecuta un bloque de código si se cumple una condición
+while → repite un bloque de código mientras se cumpla una condición
+return → termina una función y devuelve un valor
+struct → define una estructura de datos personalizada
+
+¿Cuáles son los tipos de dato primitivos en C?
+Son int para enteros, float para decimales de precisión simple, double para decimales de mayor precisión, char para un solo carácter y void para indicar ausencia de valor.
+
+PUNTEROS
+¿Qué almacena un puntero?
+No almacena un dato común como un número o letra, sino que almacena una dirección de memoria, es decir, la ubicación donde está guardado otro dato.
+¿Qué diferencia hay entre & y *?
+El & se usa para obtener la dirección de memoria de una variable, te dice dónde está guardada. El * se usa para ir a esa dirección y acceder al valor que hay ahí, te dice qué hay guardado. Uno te da la ubicación, el otro te da el contenido.
+¿Qué es un puntero nulo y para qué sirve?
+Es un puntero que no apunta a ninguna dirección válida de memoria, se representa con NULL. Sirve para indicar que el puntero todavía no tiene un destino asignado y es buena práctica inicializarlo así para evitar que apunte a basura en memoria y cause errores inesperados.
+¿Cuál es la diferencia entre paso por valor y paso por referencia?
+En el paso por valor la función recibe una copia del dato, cualquier cambio que haga no afecta al original. En el paso por referencia la función recibe la dirección de memoria del dato original, por lo que los cambios sí se ven reflejados afuera de la función. En C el paso por referencia se logra pasando punteros como parámetros.
+
+ESTRUCTURAS
+¿Cuándo usas punto y cuándo usas flecha?
+Se usa punto cuando tienes una variable normal de tipo struct, por ejemplo persona.edad. Se usa flecha cuando tienes un puntero que apunta a un struct, por ejemplo ptr->edad. La regla es simple: variable usa punto, puntero usa flecha.
+¿Qué diferencia hay entre una estructura y una instancia?
+La estructura es el molde o plantilla que define qué campos tendrá y de qué tipo serán, pero por sí sola no ocupa memoria útil ni tiene valores. La instancia es la variable concreta creada a partir de ese molde, esa sí existe en memoria y tiene sus propios valores. Es como la diferencia entre el plano de una casa y la casa ya construida.
+¿Para qué sirve typedef?
+Sirve para darle un alias o apodo a un tipo de dato. Al usarlo con struct evitas tener que escribir la palabra struct cada vez que declaras una variable de ese tipo, haciendo el código más corto y legible.
+
+PILAS
+¿Qué significa LIFO?
+Son las siglas de Last In, First Out, que significa que el último elemento en entrar es el primero en salir. Es el principio fundamental de la pila.
+¿Qué es overflow y underflow?
+Overflow ocurre cuando intentas insertar un elemento en una pila que ya está llena, no hay espacio para más. Underflow ocurre cuando intentas eliminar un elemento de una pila que ya está vacía, no hay nada que sacar.
+¿Con qué valor inicia el top en una pila vacía y por qué?
+Inicia en -1 porque el top indica la posición del último elemento insertado en el arreglo. Como los índices del arreglo empiezan en 0, un top en -1 significa que todavía no hay ningún elemento, es la forma de representar que la pila está vacía.
+
+COLAS
+¿Qué significa FIFO?
+Son las siglas de First In, First Out, que significa que el primero en entrar es el primero en salir. Es el principio fundamental de la cola, igual que una fila en la vida real.
+¿Cuál es el problema de la cola estática?
+Que cuando se eliminan elementos del frente, esos espacios quedan desperdiciados y no se pueden volver a usar. El índice final solo avanza hacia la derecha y cuando llega al límite del arreglo ya no puede insertar más, aunque haya espacios libres al inicio.
+¿Cómo lo resuelve la cola circular?
+Haciendo que cuando el índice llega al final del arreglo, en lugar de detenerse, vuelva automáticamente al inicio como si el arreglo fuera un círculo. De esta forma los espacios liberados al frente se pueden reutilizar para nuevas inserciones.
+¿Qué operador usa la cola circular para dar la vuelta y cómo funciona?
+Usa el operador módulo %. Este operador devuelve el residuo de una división. Al calcular (final + 1) % MAX, cuando final llega al último índice del arreglo el resultado vuelve a 0, logrando el efecto circular. Es lo que permite que la cola "dé la vuelta" al llegar al límite.
