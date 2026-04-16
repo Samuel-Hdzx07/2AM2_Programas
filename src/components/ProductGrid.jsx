@@ -11,7 +11,7 @@ const ProductGrid = () => {
     <section id="shop" className="px-6 py-20 md:px-10 md:py-24">
       <div className="mx-auto w-full max-w-7xl [animation:fadeIn_0.8s_ease-out]">
         <h2 className="text-3xl font-bold uppercase tracking-tight text-[#f5f5f5] md:text-4xl">
-          Featured Products
+          Productos Destacados
         </h2>
         <p className="mt-3 text-sm text-[#9ca3af]">
           Selección curada para los que van primero.
